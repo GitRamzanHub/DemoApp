@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/welcome.css" type="text/css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <title>Welcome</title>
+</head>
+<body>
+<div th:if="${successMessage}" class="message success" th:text="${successMessage}">
+    <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+    <span th:text="${successMessage}"></span>
+</div>
+<div th:if="${errorMessage}" class="message error" th:text="${errorMessage}">
+    <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+    <span th:text="${errorMessage}"></span>
+</div>
+
+<div th:if="${updated}" class="message success" th:text="${updated}">
+    <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+    <span th:text="${successMessage}"></span>
+</div>
+
+<div th:if="${updateError}" class="message error" th:text="${updateError}">
+    <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+    <span th:text="${errorMessage}"></span>
+</div>
+
+
+<div class="userDetailContainer">
+      <h3> Welcome, <span th:text="${firstName}"></span> to Crud Web App</h3>
+      <div class="user-info">
+          <p>Name: <span th:text="${name}">user_name</span></p>
+          <p>Email: <span th:text="${email}">user_email</span></p>
+
+          <p><button type="submit" class="logout-button"><a th:href="@{/logout}">Logout</a></button> </p>
+      </div>
+
+      <div class="header-line">
+          <h3>User Information</h3>
+      </div>
+
+      <div class="user-table">
+          <table>
+              <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.firstName}">FirstName</td>
+                        <td th:text="${user.lastName}">LastName</td>
+                        <td th:text="${user.email}">Email</td>
+                        <td th:text="${user.city}">City</td>
+                        <td th:text="${user.state}">State</td>
+                        <td>
+                            <a th:href="@{/welcome/edit/{id}(id=${user.id})}" class="edit-icon">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/welcome/delete/{id}(id=${user.id})}" class="delete-icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+              </tbody>
+          </table>
+
+      </div>
+
+  </div>
+</body>
+</html>

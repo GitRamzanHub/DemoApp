@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/register.css" type="text/css" rel="stylesheet">
+    <title>Update User</title>
+</head>
+<body>
+    <div class="login-container">
+      <h2>Update User</h2>
+
+      <form th:action="@{/welcome/edit}" th:object="${user}" th:method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="input-pair">
+          <div class="input-group">
+            <label for="firstName">FirstName</label>
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" th:field="*{firstName}" required>
+          </div>
+
+          <div class="input-group">
+            <label for="lastName">LastName</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" th:field="*{lastName}" required>
+          </div>
+        </div>
+
+        <div class="input-pair">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Email" th:field="*{email}" required>
+          </div>
+
+          <div class="input-group">
+            <label for="password">password</label>
+            <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}" required>
+          </div>
+
+        </div>
+
+        <div class="input-pair">
+          <div class="input-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="City" th:field="*{city}" required>
+          </div>
+
+          <div class="input-group">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="State" th:field="*{state}" required>
+          </div>
+        </div>
+
+        <button type="submit" class="login-button">Update</button>
+        <div class="reg-link" style="text-align: right;">
+          Cancel <a th:href="@{/welcome}">click here...</a>
+        </div>
+      </form>
+    </div>
+
+</body>
+</html>
